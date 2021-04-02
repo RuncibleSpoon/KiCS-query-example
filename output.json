@@ -1,0 +1,59 @@
+{
+  "document": [
+    {
+      "file": "/home/robert_haynes/query/fsmount.yaml",
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "nginx-deployment"
+      },
+      "spec": {
+        "selector": {
+          "matchLabels": {
+            "app": "nginx"
+          }
+        },
+        "replicas": 1,
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "nginx"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "ports": [
+                  {
+                    "containerPort": 80
+                  }
+                ],
+                "volumeMounts": [
+                  {
+                    "name": "hostetc",
+                    "mountPath": "/host"
+                  }
+                ],
+                "securityContext": {
+                  "privileged": true
+                },
+                "name": "nginx",
+                "image": "nginx:1.14.2"
+              }
+            ],
+            "volumes": [
+              {
+                "hostPath": {
+                  "path": "/etc",
+                  "type": "Directory"
+                },
+                "name": "hostetc"
+              }
+            ]
+          }
+        }
+      },
+      "id": "380ab328-bf33-484c-953d-9099c7570856"
+    }
+  ]
+}
