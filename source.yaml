@@ -18,7 +18,7 @@ spec:
           securityContext:
             privileged: true
             capabilities:
-              add: ["NET_ADMIN", "SYS_TIME"]`
+              add: ["NET_ADMIN", "SYS_TIME"]
           ports:
             - containerPort: 80
           volumeMounts:
